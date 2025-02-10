@@ -23,4 +23,4 @@ pool.getConnection((error, connection) => {
 });
 
 
-export default pool;
+export default pool.promise();
