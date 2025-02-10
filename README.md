@@ -1,11 +1,12 @@
 # IRCTC Railway Management System
 
 ## Problem Statement
+
 Hey there, Mr. X. You have been appointed to design a railway management system like IRCTC, where users can come on the platform and
 check if there are any trains available between 2 stations.
 The app will also display how many seats are available between any 2 stations and the user can book a seat if the availability > 0 after
-logging in. Since this has to be real-time and multiple users can book seats simultaneously, your code must be optimized enough to handle
-large traffic and should not fail while doing any bookings.
+logging in.
+Since this has to be real-time and multiple users can book seats simultaneously, your code must be optimized enough to handle large traffic and should not fail while doing any bookings.
 If more than 1 users simultaneously try to book seats, only either one of the users should be able to book. Handle such race conditions
 while booking.
 
@@ -21,6 +22,7 @@ while booking.
 
 ---
 
+
 ## Project Setup
 
 ### Environment variables
@@ -34,6 +36,8 @@ PORT=3000
 JWTSECRET='myverysecuresecret'
 APIKEY='6f4a8c3d0b12e5f9a7d6b1c4f3e2a8d9'
 ```
+
+
 ### Installation
 
 1. Clone the repository to your local machine:
@@ -84,6 +88,8 @@ CREATE TABLE bookings (
     FOREIGN KEY (train_id) REFERENCES trains(id)
 );
 ```
+
+
 ### API Endpoints
 
 #### User Routes
@@ -92,11 +98,11 @@ CREATE TABLE bookings (
        * HTTP Method :- POST
        * Endpoint :- http://localhost:3000/user/register
 
-2. Login
+ 2. Login
        * HTTP Method :- POST
        * Endpoint :- http://localhost:3000/user/login
 
-3. Check train availability
+ 3. Check train availability
    
        * HTTP Method :- GET
        * Endpoint :- http://localhost:3000/user/availability?source=Ranchi&destination=Delhi
@@ -108,17 +114,17 @@ CREATE TABLE bookings (
        * HTTP Method :- POST
        * Endpoint :- http://localhost:3000/user/book
 
-5.  Booking Details
+ 5.  Booking Details
        * HTTP Method :- GET
        * Endpoint :- http://localhost:3000/user/getAllbookings
 
 
 #### Admin Routes
 
-1.   Add a new train
+ 1.   Add a new train
        * HTTP Method :- POST
        * Endpoint :- http://localhost:3000/admin/addTrain
 
-  2. Update seat availability
+ 2. Update seat availability
        * HTTP Method :- PUT
        * Endpoint :- http://localhost:3000/admin/update-seats/10
