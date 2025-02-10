@@ -1,6 +1,6 @@
-import pool from '../config/dbconfig.js';
+import pool from '../db/db.conifg.js';
 
-export const Booking = {
+const Booking = {
     create: async (userId, trainId, seats, connection) => {
         try {
             const query = `
@@ -14,3 +14,6 @@ export const Booking = {
         }
     },
 };
+
+
+export default Booking;

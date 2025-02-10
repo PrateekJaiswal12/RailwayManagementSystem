@@ -1,6 +1,8 @@
 import express from 'express';
 import { configDotenv } from 'dotenv';
 import userRoutes from './routes/user.route.js';
+import adminRoutes from './routes/admin.route.js';
+
 
 configDotenv();
 
@@ -10,6 +12,7 @@ app.use(express.json());
 
 // routes
 app.use('/user', userRoutes);
+app.use('/admin', adminRoutes);
 
 
 // server

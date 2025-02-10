@@ -1,4 +1,5 @@
-import pool from '../config/dbconfig.js';
+import pool from '../db/db.conifg.js';
+
 
 export const addTrain = async (trainNumber, source, destination, totalSeats) => {
     const availableSeats = totalSeats; 
