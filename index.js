@@ -9,7 +9,7 @@ app.use(express.json());
 
 
 // routes
-app.use('user', userRoutes);
+app.use('/user', userRoutes);
 
 
 // server

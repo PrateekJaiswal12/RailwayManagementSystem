@@ -15,10 +15,10 @@ export const register = async(req, res) => {
             const savedUser = await newUser.save();
 
             console.log('User registered successfully, ID:', savedUser.insertId);
-            res.json({ message: 'User registered successfully' });
+            return res.json({ message: 'User registered successfully' });
+        }   else{
+            return res.status(400).json({ message: 'User already exists with this email' });
         }
-
-        return res.status(400).json({ message: 'User already exists with this email' });
 
     } catch (error) {
         console.error('Error registering user:', error.message);
@@ -28,7 +28,6 @@ export const register = async(req, res) => {
 
 
 // login user
-
 export const login = async (req, res) => {
     const { email, password } = req.body;
     
@@ -36,7 +35,7 @@ export const login = async (req, res) => {
         const user = await User.findByEmail(email);
         if (!user) {
             console.log('User not found for email:', email);
-            return res.status(401).json({ message: 'Invalid email or password' });
+            return res.status(401).json({ message: 'User Does not exist' });
         }
     
         const isPasswordMatch = await bcrypt.compare(password, user.password);
@@ -45,12 +44,12 @@ export const login = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
     
-        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWTSECRET, { expiresIn: '1h' });
         console.log('Login successful, token generated:', token);
-        res.json({ message: 'Login successful', token });
+        return res.json({ message: 'Login successful', token });
 
     } catch (error) {
         console.error('Error during login:', error.message);
-        res.status(500).json({ message: 'Unable to log in at this moment' });
+        return res.status(500).json({ message: 'Unable to log in at this moment' });
     }
 };
