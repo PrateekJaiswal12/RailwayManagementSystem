@@ -12,7 +12,7 @@ router.post('/register', register);
 
 // Rest of the user routes
 router.get('/availability', getSeatAvailability);
-router.post('/book', reserveSeat);
+router.post('/book', authMiddleware, reserveSeat);
 router.get('/getAllBookings', authMiddleware, getBookingDetails);
 
 export default router;

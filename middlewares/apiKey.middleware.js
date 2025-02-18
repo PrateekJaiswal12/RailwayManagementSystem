@@ -1,3 +1,6 @@
+import { configDotenv } from "dotenv";
+
+configDotenv();
 // Verification of secretApiKey
 
 export const verifyApiKey = (req, res, next) => {

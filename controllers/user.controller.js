@@ -42,7 +42,8 @@ export const getSeatAvailability = async (req, res) => {
 // Booking seats with transaction & locking mechanism
 export const reserveSeat = async (req, res) => {
     const { trainId, seatsToBook } = req.body;
-    const userId = req.user.id;
+    const userId = req.user?.id;
+    // console.log(req.user?.id);
 
     const connection = await pool.getConnection();
     try {
@@ -70,15 +71,16 @@ export const reserveSeat = async (req, res) => {
         await connection.query('UPDATE trains SET available_seats = available_seats - ? WHERE id = ?', [seatsToBook, trainId]);
         console.log("Seats updated");
 
+        // res.status(200).json({user: req.user});
         await Booking.create(userId, trainId, seatsToBook, connection);
         console.log("Booking Done");
 
         await connection.commit();
         res.json({ message: 'Seats booked successfully' });
     } catch (error) {
-        console.error("Error during booking:", err.message);
+        console.error("Error during booking:", error.message);
         await connection.rollback();
-        res.status(500).json({ message: 'Error booking seats', error: error.message });
+        res.status(500).json({ message: 'Error booking seats', error: error.message, req: req.user });
     } finally {
         connection.release();
     }
