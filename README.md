@@ -42,7 +42,7 @@ APIKEY='6f4a8c3d0b12e5f9a7d6b1c4f3e2a8d9'
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/PrateekJaiswal12/IRCTC-workindia
+   git clone [https://github.com/PrateekJaiswal12/RailwayManagementSystem]
    cd IRCTC
    ```
    
